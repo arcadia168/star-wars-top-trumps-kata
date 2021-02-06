@@ -46,6 +46,11 @@ describe('Character Details Component', () => {
             const CharacterDetailsElement = screen.getByTestId('character-details');
             expect(CharacterDetailsElement).toHaveTextContent('172');
         });
+
+        it('Should render the character mass', () => {
+            const CharacterDetailsElement = screen.getByTestId('character-details');
+            expect(CharacterDetailsElement).toHaveTextContent('77');
+        });
     });
 });
 
