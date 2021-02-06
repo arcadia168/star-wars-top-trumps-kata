@@ -6,8 +6,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { useState } from 'react';
 
 function App() {
+  const [results, updateResults] = useState([]);
   return (
     <Router>
       <nav>
@@ -25,11 +27,14 @@ function App() {
       <Switch>
         <Route path="/game">
           <div className="App-header TopTrumpCardContainer" data-testid="top-trump-card-container">
-            <CardContainer />
+            <CardContainer results={results} updateResults={updateResults}/>
           </div>
         </Route>
         <Route path="/scoreboard">
           <h1>This is the scoreboard</h1>
+          <div>
+            Results are: {results}
+          </div>
         </Route>
       </Switch>
       </div>
