@@ -1,6 +1,6 @@
 //TODO: expand this function to support a dynamic number of cards
 // I believe the node engine uses merge sort under the hood, which is O(log(n))
-function starshipHyperdriveRatingComparison(a, b) {
+function hyperdriveRatingComparison(a, b) {
     const firstHyperdriveRating = a.hyperdrive_rating;
     const secondHyperdriveRating = b.hyperdrive_rating;
 
@@ -17,10 +17,33 @@ function starshipHyperdriveRatingComparison(a, b) {
     }
 }
 
+function heightComparison(a, b) {
+    const firstHeight = Number.parseInt(a.height);
+    const secondHeight = Number.parseInt(b.height);
+
+    if (firstHeight > secondHeight) {
+        return -1;
+    }
+
+    if (firstHeight < secondHeight) {
+        return 1;
+    }
+
+    if (firstHeight === secondHeight) {
+        return 0;
+    }
+};
+
 export default function decideWinningCard(cards, cardType) {
     if (cardType === 'starship') {
-        cards.sort(starshipHyperdriveRatingComparison);
+        cards.sort(hyperdriveRatingComparison);
         const nameOfWinningShip = cards[0].name;
         return nameOfWinningShip;
+    }
+
+    if (cardType === 'characters') {
+        cards.sort(heightComparison);
+        const nameOfWinningCharacter = cards[0].name;
+        return nameOfWinningCharacter;
     }
 }
