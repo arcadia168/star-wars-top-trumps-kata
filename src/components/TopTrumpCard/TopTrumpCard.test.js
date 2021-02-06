@@ -2,36 +2,42 @@ import { render, screen } from '@testing-library/react';
 import TopTrumpCard from './TopTrumpCard';
 
 const exampleTopTrumpCardProps = {
-    "name": "CR90 corvette",
-    "model": "CR90 corvette",
-    "manufacturer": "Corellian Engineering Corporation",
-    "cost_in_credits": "3500000",
-    "length": "150",
-    "max_atmosphering_speed": "950",
-    "crew": "30-165",
-    "passengers": "600",
-    "cargo_capacity": "3000000",
-    "consumables": "1 year",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "60",
-    "starship_class": "corvette",
+    "name": "Republic attack cruiser",
+    "model": "Senator-class Star Destroyer",
+    "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards",
+    "cost_in_credits": "59000000",
+    "length": "1137",
+    "max_atmosphering_speed": "975",
+    "crew": "7400",
+    "passengers": "2000",
+    "cargo_capacity": "20000000",
+    "consumables": "2 years",
+    "hyperdrive_rating": "1.0",
+    "MGLT": "unknown",
+    "starship_class": "star destroyer",
     "pilots": [],
     "films": [
-        "http://swapi.dev/api/films/1/",
-        "http://swapi.dev/api/films/3/",
         "http://swapi.dev/api/films/6/"
     ],
-    "created": "2014-12-10T14:20:33.369000Z",
-    "edited": "2014-12-20T21:23:49.867000Z",
-    "url": "http://swapi.dev/api/starships/2/"
+    "created": "2014-12-20T19:52:56.232000Z",
+    "edited": "2014-12-20T21:23:49.946000Z",
+    "url": "http://swapi.dev/api/starships/63/"
 };
 
 describe('Top Trump Card Component', () => {
     describe('When rendering a Top Trump Card component', () => {
-        it('Should render a top trump card', () => {
+        beforeEach(() => {
             render(<TopTrumpCard {...exampleTopTrumpCardProps}/>);
+        });
+
+        it('Should render a top trump card', () => {
             const TopTrumpCardElement = screen.getByTestId('top-trump-card');
-            expect(TopTrumpCardElement).toBeInTheDocument();
+            expect(TopTrumpCardElement).toBeInTheDocument('CR90 corvette');
+        });
+
+        it('Should render the title of the card', () => {
+            const TopTrumpCardTitleElement = screen.getByText('Republic attack cruiser');
+            expect(TopTrumpCardTitleElement).toHaveTextContent('Republic attack cruiser');
         });
     });
 });
