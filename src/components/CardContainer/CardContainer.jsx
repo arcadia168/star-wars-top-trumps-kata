@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import StarWarsApiService from '../../services/StarWarsApiService/StarWarsApiService';
 import chooseRandomCards from '../../utils/chooseRandomCards/chooseRandomCards'
+import decideWinningCard from '../../utils/decideWinningCard/decideWinningCard'
 import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
 
 function CardContainer(props) {
@@ -11,6 +12,7 @@ function CardContainer(props) {
     const [cardType, setCardType] = useState(false);
     const [randomlyChosenCards, setRandomlyChosenCards] = useState();
     const [playAgainClicked, setPlayAgainClicked] = useState(false);
+    const [nameOfWinningCard, setNameOfWinningCard] = useState();
 
     //TODO: Fetch all types of possible cards and dynamically render choice from API!
     //TODO: make 'number of players' dynamically configuarable here and allow code to adjust!
@@ -48,6 +50,8 @@ function CardContainer(props) {
             if (cards) {
                 const randomlyChosenCards = chooseRandomCards(cards);
                 //TODO: call util function to decide winner and set here.
+                const nameOfWinningCard = decideWinningCard(randomlyChosenCards, cardType);
+                setNameOfWinningCard(nameOfWinningCard);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
 
@@ -93,13 +97,14 @@ function CardContainer(props) {
             )}
             {randomlyChosenCards && (
                 <div className="active-game-container" data-testid="active-game-container">
+                    <div className="winning-card-banner" data-testid="winning-card-banner">The winning card is: {nameOfWinningCard}! Congrats!</div>
                     <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
                         <div>
-                            <h1>Player 1</h1>
+                            <h3>Player 1</h3>
                             <TopTrumpCard {...randomlyChosenCards[0]}/>
                         </div>
                         <div>
-                            <h1>Player 2</h1>
+                            <h3>Player 2</h3>
                             <TopTrumpCard {...randomlyChosenCards[1]}/>
                         </div>
                     </div>

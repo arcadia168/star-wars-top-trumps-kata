@@ -80,7 +80,6 @@ describe('Decide Winning Card Utility', () => {
         });
     });
 
-    //TODO: When deciding between character type cards.
     describe('When deciding between different character type cards', () => {
         it('Should declare the card with the largest height as the winner', () => {
             const characters = [
