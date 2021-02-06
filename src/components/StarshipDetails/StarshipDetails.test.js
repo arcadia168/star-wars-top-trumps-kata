@@ -41,6 +41,8 @@ describe('Starship Details Component', () => {
             const CharacterDetailsElement = screen.getByTestId('starship-details');
             expect(CharacterDetailsElement).toHaveTextContent('2.0');
         });
+
+        //TODO: Render out other COMPARABLE properties later
     });
 });
 
