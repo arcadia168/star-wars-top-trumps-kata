@@ -1,18 +1,40 @@
 import './App.css';
 import CardContainer from './components/CardContainer/CardContainer';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>
-        <h1>Here is the top trump card:</h1>
-        <div className="TopTrumpCardContainer" data-testid="top-trump-card-container">
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/game">Main Game</Link>
+          </li>
+          <li>
+            <Link to="/scoreboard">Scoreboard</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <div className="App">
+      <Switch>
+        <Route path="/game">
+          {/* <div className="App-header TopTrumpCardContainer" data-testid="top-trump-card-container">
+            <CardContainer />
+          </div> */}
           <CardContainer />
-        </div>
+        </Route>
+        <Route path="/scoreboard">
+          <h1>This is the scoreboard</h1>
+        </Route>
+      </Switch>
       </div>
-      </header>
-    </div>
+    </Router>
   );
 }
 
