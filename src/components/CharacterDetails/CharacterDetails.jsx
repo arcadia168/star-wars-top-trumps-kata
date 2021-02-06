@@ -7,6 +7,7 @@ function CharacterDetails(props) {
       <div className="CharacterDetails" data-testid="character-details">
           <h1>Height is: {height}</h1>
           <h1>Mass is: {mass}</h1>
+          <h1>Hair color is: {hair_color}</h1>
       </div>
     );
 };

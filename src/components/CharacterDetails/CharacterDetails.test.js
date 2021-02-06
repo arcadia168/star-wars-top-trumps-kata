@@ -51,6 +51,11 @@ describe('Character Details Component', () => {
             const CharacterDetailsElement = screen.getByTestId('character-details');
             expect(CharacterDetailsElement).toHaveTextContent('77');
         });
+
+        it('Should render the character hair color', () => {
+            const CharacterDetailsElement = screen.getByTestId('character-details');
+            expect(CharacterDetailsElement).toHaveTextContent('blond');
+        });
     });
 });
 
