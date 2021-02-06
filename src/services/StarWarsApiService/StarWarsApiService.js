@@ -15,6 +15,20 @@ export default class StarWarsApiService {
             );
         }
     }
+
+    static async fetchCharacters() {
+        try {
+            let res = await axios.get(`${StarWarsApiBaseUrl}/people/`);
+            let { data } = res;
+            return data;
+        } catch(error) {
+            //TODO: handle errors here...
+            //TODO: write test for below code...
+            console.error(
+                `An error occurred when attempting to fetch starships: ${JSON.stringify(error)}`
+            );
+        }
+    }
     //have outer function, get random starships...
     //have outer function, get random characters...
 }
