@@ -30,7 +30,10 @@ function App() {
       <header className="App-header">
         <div>
         <h1>Here is the top trump card:</h1>
-        <TopTrumpCard {...exampleTopTrumpCardProps}></TopTrumpCard>
+        <div className="TopTrumpCardContainer" data-testid="top-trump-card-container">
+          <TopTrumpCard {...exampleTopTrumpCardProps}></TopTrumpCard>
+          <TopTrumpCard {...exampleTopTrumpCardProps}></TopTrumpCard>
+        </div>
       </div>
       </header>
     </div>
