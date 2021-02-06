@@ -42,6 +42,9 @@ describe('Character Details Component', () => {
             expect(CharacterDetailsElement).toBeInTheDocument();
         });
 
+        //TODO: Reduce to just measurable characteristics?
+        //TODO: Combine into one test with multiple assertions?
+
         it('Should render the character height', () => {
             const CharacterDetailsElement = screen.getByTestId('character-details');
             expect(CharacterDetailsElement).toHaveTextContent('172');
