@@ -1,3 +1,7 @@
+:root {
+  --sizing-unit: 8px;
+};
+
 .App {
   text-align: center;
 }

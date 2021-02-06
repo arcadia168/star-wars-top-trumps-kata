@@ -1,3 +1,5 @@
+import './TopTrumpCard.css';
+
 function TopTrumpCard(props) {
     const { name } = props;
 
