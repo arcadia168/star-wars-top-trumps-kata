@@ -5,7 +5,7 @@ function CharacterDetails(props) {
 
     return (
       <div className="CharacterDetails" data-testid="character-details">
-          <h1>{hair_color}</h1>
+          <h1>{height}</h1>
       </div>
     );
 };

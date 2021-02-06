@@ -39,7 +39,12 @@ describe('Character Details Component', () => {
 
         it('Should render a character details component', () => {
             const CharacterDetailsElement = screen.getByTestId('character-details');
-            expect(CharacterDetailsElement).toBeInTheDocument('fair');
+            expect(CharacterDetailsElement).toBeInTheDocument();
+        });
+
+        it('Should render the character height', () => {
+            const CharacterDetailsElement = screen.getByTestId('character-details');
+            expect(CharacterDetailsElement).toHaveTextContent('172');
         });
     });
 });
