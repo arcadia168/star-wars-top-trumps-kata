@@ -12,6 +12,9 @@ I will write these as I go to record my thoughts, I have broadly split these int
 
 ### Observations
 1. Original Star Wars API was down, so I am using a branched alternative at swapi.dev
+2. Not all characteristics from the API are COMPARABLE
+3. The API returns data objects in a paginated manner
+4. The API IDs are not sequential and so can not simply be queried as if the IDs are contiguous.
 
 ### Methodology
 Some general notes about how I approached the problem
