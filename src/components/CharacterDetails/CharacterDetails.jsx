@@ -10,6 +10,7 @@ function CharacterDetails(props) {
           <h1>Hair color is: {hair_color}</h1>
           <h1>Skin color is: {skin_color}</h1>
           <h1>Eye color is: {eye_color}</h1>
+          <h1>Birth year is: {birth_year}</h1>
       </div>
     );
 };

@@ -65,6 +65,11 @@ describe('Character Details Component', () => {
             const CharacterDetailsElement = screen.getByTestId('character-details');
             expect(CharacterDetailsElement).toHaveTextContent('blue');
         });
+
+        it('Should render the character birth year', () => {
+            const CharacterDetailsElement = screen.getByTestId('character-details');
+            expect(CharacterDetailsElement).toHaveTextContent('19BBY');
+        });
     });
 });
 
