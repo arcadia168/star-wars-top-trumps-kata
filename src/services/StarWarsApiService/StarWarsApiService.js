@@ -29,6 +29,4 @@ export default class StarWarsApiService {
             );
         }
     }
-    //have outer function, get random starships...
-    //have outer function, get random characters...
 }
