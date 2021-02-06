@@ -10,6 +10,7 @@ function CardContainer(props) {
     const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
     const [cardType, setCardType] = useState(false);
     const [randomlyChosenCards, setRandomlyChosenCards] = useState();
+    const [playAgainClicked, setPlayAgainClicked] = useState(false);
 
     //TODO: Fetch all types of possible cards and dynamically render choice from API!
     //TODO: make 'number of players' dynamically configuarable here and allow code to adjust!
@@ -48,12 +49,14 @@ function CardContainer(props) {
                 const randomlyChosenCards = chooseRandomCards(cards);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
+
+            setPlayAgainClicked(false);
         }
 
         if (cardTypeChosen) {
             fetchNewCards();
         }
-    }, [cardTypeChosen, cardType]);
+    }, [cardTypeChosen, cardType, playAgainClicked]);
 
     //TODO: Translations?
 
@@ -96,6 +99,9 @@ function CardContainer(props) {
                     <button
                         className="play-again-btn"
                         data-testid="play-again-btn"
+                        onClick={() => {
+                            setPlayAgainClicked(true);
+                        }}
                     >
                         Play Again
                     </button>
