@@ -8,6 +8,7 @@ import decideWinningCard from '../../utils/decideWinningCard/decideWinningCard'
 import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
 
 function CardContainer(props) {
+    const { results, updateResults } = props;
     const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
     const [cardType, setCardType] = useState(false);
     const [randomlyChosenCards, setRandomlyChosenCards] = useState();
@@ -52,6 +53,10 @@ function CardContainer(props) {
                 //TODO: call util function to decide winner and set here.
                 const nameOfWinningCard = decideWinningCard(randomlyChosenCards, cardType);
                 setNameOfWinningCard(nameOfWinningCard);
+
+                //todo: calculate position/player here
+                const updatedResults = [nameOfWinningCard, ...results];
+                updateResults(updatedResults);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
 
