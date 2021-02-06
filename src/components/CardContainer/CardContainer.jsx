@@ -7,9 +7,6 @@ import chooseRandomCards from '../../utils/chooseRandomCards'
 import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
 
 function CardContainer(props) {
-    //do bulk of logic in here
-
-    //use state hooks, if deck is chosen, then fetch and show cards and button instead
     const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
     const [cardType, setCardType] = useState(false);
     const [randomlyChosenCards, setRandomlyChosenCards] = useState();
@@ -28,6 +25,8 @@ function CardContainer(props) {
                     const data = await StarWarsApiService.fetchCharacters();
                     //TODO: return purely useful data from the testable mockable class
                     cards = data.results;
+
+                    //TODO: Store a history of the results!!!
                 } catch(error) {
                     //TODO: set error and show banner
                 }
@@ -36,14 +35,15 @@ function CardContainer(props) {
                     const data = await StarWarsApiService.fetchStarships();
                     //TODO: return purely useful data from the testable mockable class
                     cards = data.results;
+
+                    //TODO: Store a history of the results!!!
                 } catch(error) {
                     //TODO: set error and show banner
                 }
             };
 
-            //now randomly choose correct number of cards
-            // adjust the numbers of players on this line here
-            debugger;
+            // Improvement: adjust the numbers of players on this line here
+            // Randomly choose correct number of cards
             if (cards) {
                 const randomlyChosenCards = chooseRandomCards(cards);
                 setRandomlyChosenCards(randomlyChosenCards);
@@ -88,9 +88,17 @@ function CardContainer(props) {
                 </div>
             )}
             {randomlyChosenCards && (
-                <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
-                    <TopTrumpCard {...randomlyChosenCards[0]}/>
-                    <TopTrumpCard {...randomlyChosenCards[1]}/>
+                <div className="active-game-container" data-testid="active-game-container">
+                    <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
+                        <TopTrumpCard {...randomlyChosenCards[0]}/>
+                        <TopTrumpCard {...randomlyChosenCards[1]}/>
+                    </div>
+                    <button
+                        className="play-again-btn"
+                        data-testid="play-again-btn"
+                    >
+                        Play Again
+                    </button>
                 </div>
             )}
         </div>
