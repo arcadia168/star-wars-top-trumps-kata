@@ -5,8 +5,6 @@ import * as axios from "axios";
 //best practice is to mock at the lowest possible level of cod to mitigate changes in other files.
 jest.mock('axios');
 
-// StarWarsApiService.fetchCharacters = jest.fn();
-
 describe('Card Container Component', () => {
     describe('When rendering the card container component', () => {
         it('Should render a card container component', () => {
