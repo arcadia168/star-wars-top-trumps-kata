@@ -1,13 +1,10 @@
-import './TopTrumpCard.css';
+import './StarshipDetails.css';
 
-function TopTrumpCard(props) {
-    const { name } = props;
-
+function StarshipDetails(props) {
     return (
-      <div className="TopTrumpCard" data-testid="top-trump-card">
-          <h1>{name}</h1>
+      <div className="StarshipDetails" data-testid="starship-details">
       </div>
     );
 };
 
-export default TopTrumpCard;
+export default StarshipDetails;

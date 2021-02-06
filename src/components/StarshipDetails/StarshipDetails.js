@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import TopTrumpCard from './StarshipDetails';
+import StarshipDetails from './StarshipDetails';
 
-const exampleTopTrumpCardProps = {
+const exampleStarShipDetails = {
     "name": "Republic attack cruiser",
     "model": "Senator-class Star Destroyer",
     "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards",
@@ -24,20 +24,15 @@ const exampleTopTrumpCardProps = {
     "url": "http://swapi.dev/api/starships/63/"
 };
 
-describe('Top Trump Card Component', () => {
+describe('Starship Details Component', () => {
     describe('When rendering a Top Trump Card component', () => {
         beforeEach(() => {
-            render(<TopTrumpCard {...exampleTopTrumpCardProps}/>);
+            render(<StarshipDetails {...exampleStarShipDetails}/>);
         });
 
-        it('Should render a top trump card', () => {
-            const TopTrumpCardElement = screen.getByTestId('top-trump-card');
-            expect(TopTrumpCardElement).toBeInTheDocument('CR90 corvette');
-        });
-
-        it('Should render the title of the card', () => {
-            const TopTrumpCardTitleElement = screen.getByText('Republic attack cruiser');
-            expect(TopTrumpCardTitleElement).toHaveTextContent('Republic attack cruiser');
+        it('Should render a starship details component', () => {
+            const StarshipDetailsElement = screen.getByTestId('starship-details');
+            expect(StarshipDetailsElement).toBeInTheDocument();
         });
     });
 });
