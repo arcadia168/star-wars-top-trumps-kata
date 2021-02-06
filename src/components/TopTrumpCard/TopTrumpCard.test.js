@@ -1,27 +1,31 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import TopTrumpCard from './TopTrumpCard';
 
+//TODO: Move these JSON examples into folder to avoid repeated definition.
 const exampleStarshipDetailsProps = {
-    "name": "Republic attack cruiser",
-    "model": "Senator-class Star Destroyer",
-    "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards",
-    "cost_in_credits": "59000000",
-    "length": "1137",
+    "cardType": "starship",
+    "name": "Star Destroyer",
+    "model": "Imperial I-class Star Destroyer",
+    "manufacturer": "Kuat Drive Yards",
+    "cost_in_credits": "150000000",
+    "length": "1,600",
     "max_atmosphering_speed": "975",
-    "crew": "7400",
-    "passengers": "2000",
-    "cargo_capacity": "20000000",
+    "crew": "47,060",
+    "passengers": "n/a",
+    "cargo_capacity": "36000000",
     "consumables": "2 years",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "starship_class": "star destroyer",
+    "hyperdrive_rating": "2.0",
+    "MGLT": "60",
+    "starship_class": "Star Destroyer",
     "pilots": [],
     "films": [
-        "http://swapi.dev/api/films/6/"
+        "http://swapi.dev/api/films/1/",
+        "http://swapi.dev/api/films/2/",
+        "http://swapi.dev/api/films/3/"
     ],
-    "created": "2014-12-20T19:52:56.232000Z",
-    "edited": "2014-12-20T21:23:49.946000Z",
-    "url": "http://swapi.dev/api/starships/63/"
+    "created": "2014-12-10T15:08:19.848000Z",
+    "edited": "2014-12-20T21:23:49.870000Z",
+    "url": "http://swapi.dev/api/starships/3/"
 };
 
 const exampleCharacterDetailsProps = {
@@ -55,34 +59,41 @@ const exampleCharacterDetailsProps = {
     "url": "http://swapi.dev/api/people/1/"
 };
 
+//TODO: Figure out how to mount/unmount using beforeEach afterEach
 describe('Top Trump Card Component', () => {
     describe('When rendering a Top Trump Card component', () => {
-        beforeEach(() => {
-            render(<TopTrumpCard {...exampleStarshipDetailsProps}/>);
-        });
-
         it('Should render a top trump card', () => {
+            const { unmount } = render(<TopTrumpCard {...exampleStarshipDetailsProps}/>);
             const TopTrumpCardElement = screen.getByTestId('top-trump-card');
             expect(TopTrumpCardElement).toBeInTheDocument();
+            unmount();
         });
 
         it('Should render the name of the card', () => {
-            const TopTrumpCardTitleElement = screen.getByText('Republic attack cruiser');
-            expect(TopTrumpCardTitleElement).toHaveTextContent('Republic attack cruiser');
+            const { unmount } = render(<TopTrumpCard {...exampleStarshipDetailsProps}/>);
+            const TopTrumpCardTitleElement = screen.getByText('Star Destroyer');
+            expect(TopTrumpCardTitleElement).toHaveTextContent('Star Destroyer');
+            unmount();
         });
 
         describe('When rendering a character top trump card', () => {
-            beforeEach(() => {
-                render(<TopTrumpCard {...exampleCharacterDetailsProps} />);
-            });
-
             it('Should show character details', () => {
+                const { unmount } = render(<TopTrumpCard {...exampleCharacterDetailsProps} />);
                 const TopTrumpCardDetailsElement = screen.getByTestId('character-details');
                 expect(TopTrumpCardDetailsElement).toHaveTextContent('172');
+                unmount();
             });
         });
 
         //TODO: When rendering a starship card should show starship details.
+        describe('When rendering a starship top trump card', () => {
+            it('Should show hyperdrive rating details', () => {
+                const { unmount } = render(<TopTrumpCard {...exampleStarshipDetailsProps} />);
+                const TopTrumpCardDetailsElement = screen.getByTestId('starship-details');
+                expect(TopTrumpCardDetailsElement).toHaveTextContent('2.0');
+                unmount();
+            });
+        });
     });
 });
 
