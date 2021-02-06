@@ -60,6 +60,11 @@ describe('Character Details Component', () => {
             const CharacterDetailsElement = screen.getByTestId('character-details');
             expect(CharacterDetailsElement).toHaveTextContent('fair');
         });
+
+        it('Should render the character eye color', () => {
+            const CharacterDetailsElement = screen.getByTestId('character-details');
+            expect(CharacterDetailsElement).toHaveTextContent('blue');
+        });
     });
 });
 
