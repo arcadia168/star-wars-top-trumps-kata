@@ -1,13 +1,13 @@
-import './TopTrumpCard.css';
+import './CharacterDetails.css';
 
-function TopTrumpCard(props) {
-    const { name } = props;
+function CharacterDetails(props) {
+    const { height, mass, hair_color, skin_color, eye_color, birth_year, gender, homeworld } = props;
 
     return (
-      <div className="TopTrumpCard" data-testid="top-trump-card">
-          <h1>{name}</h1>
+      <div className="CharacterDetails" data-testid="character-details">
+          <h1>{hair_color}</h1>
       </div>
     );
 };
 
-export default TopTrumpCard;
+export default CharacterDetails;
