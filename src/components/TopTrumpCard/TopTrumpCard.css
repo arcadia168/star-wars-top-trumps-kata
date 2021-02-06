@@ -1,5 +1,6 @@
 .TopTrumpCard {
     display: flex;
     border: 1px solid red;
-    width: var(--sizing-unit) * 20;
+    flex-basis: 1;
+    margin: calc(var(--sizing-unit) * 2);
 }
