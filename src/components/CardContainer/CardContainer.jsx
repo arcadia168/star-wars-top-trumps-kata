@@ -3,7 +3,7 @@ import React, {
     useState,
 } from 'react';
 import StarWarsApiService from '../../services/StarWarsApiService/StarWarsApiService';
-import chooseRandomCards from '../../utils/chooseRandomCards'
+import chooseRandomCards from '../../utils/chooseRandomCards/chooseRandomCards'
 import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
 
 function CardContainer(props) {
@@ -47,6 +47,7 @@ function CardContainer(props) {
             // Randomly choose correct number of cards
             if (cards) {
                 const randomlyChosenCards = chooseRandomCards(cards);
+                //TODO: call util function to decide winner and set here.
                 setRandomlyChosenCards(randomlyChosenCards);
             }
 
@@ -93,8 +94,14 @@ function CardContainer(props) {
             {randomlyChosenCards && (
                 <div className="active-game-container" data-testid="active-game-container">
                     <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
-                        <TopTrumpCard {...randomlyChosenCards[0]}/>
-                        <TopTrumpCard {...randomlyChosenCards[1]}/>
+                        <div>
+                            <h1>Player 1</h1>
+                            <TopTrumpCard {...randomlyChosenCards[0]}/>
+                        </div>
+                        <div>
+                            <h1>Player 2</h1>
+                            <TopTrumpCard {...randomlyChosenCards[1]}/>
+                        </div>
                     </div>
                     <button
                         className="play-again-btn"
