@@ -24,10 +24,9 @@ function App() {
       <div className="App">
       <Switch>
         <Route path="/game">
-          {/* <div className="App-header TopTrumpCardContainer" data-testid="top-trump-card-container">
+          <div className="App-header TopTrumpCardContainer" data-testid="top-trump-card-container">
             <CardContainer />
-          </div> */}
-          <CardContainer />
+          </div>
         </Route>
         <Route path="/scoreboard">
           <h1>This is the scoreboard</h1>
