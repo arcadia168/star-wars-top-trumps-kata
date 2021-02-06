@@ -1,15 +1,18 @@
 //TODO: expand this function to support a dynamic number of cards
 // I believe the node engine uses merge sort under the hood, which is O(log(n))
 function starshipHyperdriveRatingComparison(a, b) {
-    if (a > b) {
-        return 1;
-    }
+    const firstHyperdriveRating = a.hyperdrive_rating;
+    const secondHyperdriveRating = b.hyperdrive_rating;
 
-    if (a < b) {
+    if (firstHyperdriveRating > secondHyperdriveRating) {
         return -1;
     }
 
-    if (a === b) {
+    if (firstHyperdriveRating < secondHyperdriveRating) {
+        return 1;
+    }
+
+    if (firstHyperdriveRating === secondHyperdriveRating) {
         return 0;
     }
 }
