@@ -63,6 +63,8 @@ function CardContainer(props) {
                 const randomlyChosenCards = chooseRandomCards(cards, validNumberOfPlayers);
                 // console.info(`randomly chosen cards (sorted?) are: ${randomlyChosenCards}`);
 
+                //TODO: Implement logic for a DRAW!!!!
+
                 const winningCard = decideWinningCard(randomlyChosenCards, cardType);
                 setNameOfWinningCard(winningCard.name);
 
