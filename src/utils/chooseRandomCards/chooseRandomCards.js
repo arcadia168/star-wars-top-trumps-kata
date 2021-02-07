@@ -16,7 +16,7 @@ export default function chooseRandomCards(cards, cardsToPick = 2) {
         let uniqueRandomNumberFound = false;
         do {
             //generate random integer within index range
-            const newRandomNum = Math.floor(Math.random() * (numberOfCards + 1));
+            const newRandomNum = Math.floor(Math.random() * (numberOfCards));
 
             //if this is a new random integer, add to the the list
             if (!randomCardIndices.includes(newRandomNum)) {
