@@ -55,8 +55,10 @@ function CardContainer(props) {
                 setNameOfWinningCard(nameOfWinningCard);
 
                 //todo: calculate position/player here
-                const updatedResults = [nameOfWinningCard, ...results];
-                updateResults(updatedResults);
+                if (results && updateResults) {
+                    const updatedResults = [nameOfWinningCard, ...results];
+                    updateResults(updatedResults);
+                }
                 setRandomlyChosenCards(randomlyChosenCards);
             }
 
