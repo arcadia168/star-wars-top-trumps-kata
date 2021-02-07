@@ -8,7 +8,16 @@ import decideWinningCard from '../../utils/decideWinningCard/decideWinningCard'
 import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
 
 function CardContainer(props) {
-    const { results, updateResults } = props;
+    const { results, updateResults, numPlayers } = props;
+
+    let validNumberOfPlayers;
+    //TODO: Whats a valid max number of players? Valid min is 2
+    if (!numPlayers || numPlayers < 2 || numPlayers > 3) {
+        validNumberOfPlayers = 2;
+    } else {
+        validNumberOfPlayers = numPlayers;
+    };
+
     const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
     const [cardType, setCardType] = useState(false);
     const [randomlyChosenCards, setRandomlyChosenCards] = useState();
@@ -46,16 +55,13 @@ function CardContainer(props) {
                 }
             };
 
-            // Improvement: adjust the numbers of players on this line here
             // Randomly choose correct number of cards
             if (cards) {
-                const randomlyChosenCards = chooseRandomCards(cards);
-                //TODO: call util function to decide winner and set here.
+                const randomlyChosenCards = chooseRandomCards(cards, validNumberOfPlayers);
                 const nameOfWinningCard = decideWinningCard(randomlyChosenCards, cardType);
                 setNameOfWinningCard(nameOfWinningCard);
 
-                //todo: calculate position/player here
-                console.info(`existing results were: ${results}`)
+                //TODO: calculate position/player here
                 if (results && updateResults) {
                     console.info(`updtaing results`);
                     const updatedResults = [nameOfWinningCard, ...results];
@@ -65,8 +71,6 @@ function CardContainer(props) {
                 console.info(`Randomly chosen cards are: ${randomlyChosenCards.map(card => JSON.stringify(randomlyChosenCards))}`);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
-
-            // setPlayAgainClicked(false);
         }
 
         if (cardTypeChosen && shouldFetchNewCards) {
@@ -74,9 +78,29 @@ function CardContainer(props) {
             fetchNewCards();
             setShouldFetchNewCards(false)
         }
-    }, [cardTypeChosen, cardType, shouldFetchNewCards, results, updateResults]);
+    }, [
+        cardTypeChosen,
+        cardType,
+        shouldFetchNewCards,
+        results,
+        updateResults,
+        validNumberOfPlayers
+    ]);
 
     //TODO: Translations?
+
+    function renderChosenPlayerCards() {
+        return randomlyChosenCards.map((card, index) => (
+            <div
+                key={index}
+                className={`player-card player-${index + 1}-card`}
+                data-testid={`player-${index + 1}-card`}
+            >
+                <h3>Player {index + 1}</h3>
+                <TopTrumpCard {...randomlyChosenCards[index]}/>
+            </div>
+        ));
+    }
 
     //TODO: Clean up this JS-DOM by using clean code functions.
     return (
@@ -112,14 +136,7 @@ function CardContainer(props) {
                 <div className="active-game-container" data-testid="active-game-container">
                     <div className="winning-card-banner" data-testid="winning-card-banner">The winning card is: {nameOfWinningCard}! Congrats!</div>
                     <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
-                        <div>
-                            <h3>Player 1</h3>
-                            <TopTrumpCard {...randomlyChosenCards[0]}/>
-                        </div>
-                        <div>
-                            <h3>Player 2</h3>
-                            <TopTrumpCard {...randomlyChosenCards[1]}/>
-                        </div>
+                        {renderChosenPlayerCards()}
                     </div>
                     <button
                         className="play-again-btn"
