@@ -74,9 +74,12 @@ describe('Decide Winning Card Utility', () => {
                 },
             ]
 
-            const winningCardName = decideWinningCard(starships, 'starship');
+            const winningCard = decideWinningCard(starships, 'starships');
 
-            expect(winningCardName).toEqual('Death Star');
+            expect(winningCard).toEqual({
+                name: 'Death Star',
+                hyperdriveRating: '4.0'
+            });
         });
     });
 
@@ -193,9 +196,12 @@ describe('Decide Winning Card Utility', () => {
                 },
             ];
 
-            const winningCardName = decideWinningCard(characters, 'characters');
+            const winningCard = decideWinningCard(characters, 'characters');
 
-            expect(winningCardName).toEqual('Darth Vader');
+            expect(winningCard).toEqual({
+                "name": "Darth Vader",
+                "height": "202",
+            },);
         });
     });
 });
