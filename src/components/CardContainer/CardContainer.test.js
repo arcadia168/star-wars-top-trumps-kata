@@ -5,13 +5,16 @@ import * as axios from "axios";
 //best practice is to mock at the lowest possible level of cod to mitigate changes in other files.
 jest.mock('axios');
 
+const updateResults = jest.fn();
+const results = [];
+
 describe('Card Container Component', () => {
     afterEach(() => {
         jest.clearAllMocks()
     });
     describe('When rendering the card container component', () => {
         it('Should render a card container component', () => {
-            render(<CardContainer />);
+            render(<CardContainer/>);
             const cardContainerElement = screen.getByTestId('card-container');
             expect(cardContainerElement).toBeInTheDocument();
         });

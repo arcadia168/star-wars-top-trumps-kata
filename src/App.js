@@ -12,7 +12,7 @@ function App() {
   const [results, updateResults] = useState([]);
   return (
     <Router>
-      <nav>
+      <nav className="top-trump-menu" data-testid="top-trump-menu">
         <ul>
           <li>
             <Link to="/game">Main Game</Link>
