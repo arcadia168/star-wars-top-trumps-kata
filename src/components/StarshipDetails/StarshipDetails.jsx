@@ -1,12 +1,12 @@
 import './StarshipDetails.css';
 
 function StarshipDetails(props) {
-    const { hyperdrive_rating } = props;
+    const { hyperdriveRating } = props;
 
     //TODO: Show other details props from the API, later, with unit tests.
     return (
       <div className="StarshipDetails" data-testid="starship-details">
-        <h1>Hyperdrive rating is: {hyperdrive_rating}</h1>
+        <h1>Hyperdrive rating is: {hyperdriveRating}</h1>
       </div>
     );
 };

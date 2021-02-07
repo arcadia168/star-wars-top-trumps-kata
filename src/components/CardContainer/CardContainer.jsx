@@ -10,6 +10,13 @@ import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
 function CardContainer(props) {
     const { results, updateResults, numPlayers } = props;
 
+    const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
+    const [cardType, setCardType] = useState(false);
+    const [randomlyChosenCards, setRandomlyChosenCards] = useState();
+    const [shouldFetchNewCards, setShouldFetchNewCards] = useState(true);
+    const [nameOfWinningCard, setNameOfWinningCard] = useState();
+    const [winningPlayer, setWinningPlayer] = useState();
+
     let validNumberOfPlayers;
     //TODO: Whats a valid max number of players? Valid min is 2
     if (!numPlayers || numPlayers < 2 || numPlayers > 3) {
@@ -18,17 +25,10 @@ function CardContainer(props) {
         validNumberOfPlayers = numPlayers;
     };
 
-    const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
-    const [cardType, setCardType] = useState(false);
-    const [randomlyChosenCards, setRandomlyChosenCards] = useState();
-    const [shouldFetchNewCards, setShouldFetchNewCards] = useState(true);
-    const [nameOfWinningCard, setNameOfWinningCard] = useState();
-
     //TODO: Fetch all types of possible cards and dynamically render choice from API!
-    //TODO: make 'number of players' dynamically configuarable here and allow code to adjust!
 
     useEffect(() => {
-        console.info(`use effect called`);
+        // console.info(`use effect called`);
 
         const fetchNewCards = async () => {
             let cards;
@@ -55,26 +55,48 @@ function CardContainer(props) {
                 }
             };
 
+            // console.info(`cards are: ${JSON.stringify(cards)}`);
             // Randomly choose correct number of cards
             if (cards) {
+                //are cards sorted prior to this? I don't think so...
                 const randomlyChosenCards = chooseRandomCards(cards, validNumberOfPlayers);
-                const nameOfWinningCard = decideWinningCard(randomlyChosenCards, cardType);
-                setNameOfWinningCard(nameOfWinningCard);
+                console.info(`randomly chosen cards (sorted?) are: ${randomlyChosenCards}`);
 
+                const winningCard = decideWinningCard(randomlyChosenCards, cardType);
+                setNameOfWinningCard(winningCard.name);
+
+                //works from assumption that index = player position
+                let winningPlayerIndex = randomlyChosenCards.findIndex(
+                    card => card.name === winningCard.name
+                );
+
+                //TODO: use separate variable for this?
+                // winningPlayerIndex = winningPlayerIndex + 1;
+                setWinningPlayer(winningPlayerIndex);
                 //TODO: calculate position/player here
                 if (results && updateResults) {
-                    console.info(`updtaing results`);
-                    const updatedResults = [nameOfWinningCard, ...results];
+                    const newResult = {
+                        winningPlayer: (winningPlayerIndex + 1),
+                        winningCardName: winningCard.name,
+                        wonWith: cardType === 'characters' ?
+                            `height: ${winningCard.height}` : `hyperdrive rating: ${winningCard.hyperdriveRating}`
+                    }
+
+                    const newResultsArray = [newResult];
+
+                    console.info(`updating results`);
+
+                    const updatedResults = newResultsArray.concat(results);
                     console.info(`updated results are: ${updatedResults}`);
                     updateResults(updatedResults);
                 }
-                console.info(`Randomly chosen cards are: ${randomlyChosenCards.map(card => JSON.stringify(randomlyChosenCards))}`);
+                // console.info(`Randomly chosen cards are: ${randomlyChosenCards.map(card => JSON.stringify(randomlyChosenCards))}`);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
         }
 
         if (cardTypeChosen && shouldFetchNewCards) {
-            console.info(`Fetching new cards`);
+            // console.info(`Fetching new cards`);
             fetchNewCards();
             setShouldFetchNewCards(false)
         }
@@ -97,7 +119,11 @@ function CardContainer(props) {
                 data-testid={`player-${index + 1}-card`}
             >
                 <h3>Player {index + 1}</h3>
-                <TopTrumpCard {...randomlyChosenCards[index]}/>
+                <TopTrumpCard
+                    name={randomlyChosenCards[index].name}
+                    cardType={cardType}
+                    cardDetails={randomlyChosenCards[index]}
+                />
             </div>
         ));
     }
@@ -134,7 +160,9 @@ function CardContainer(props) {
             )}
             {randomlyChosenCards && (
                 <div className="active-game-container" data-testid="active-game-container">
-                    <div className="winning-card-banner" data-testid="winning-card-banner">The winning card is: {nameOfWinningCard}! Congrats!</div>
+                    <div className="winning-card-banner" data-testid="winning-card-banner">
+                        {`Player ${winningPlayer + 1} won this round! The winning card is: ${nameOfWinningCard}!`}
+                    </div>
                     <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
                         {renderChosenPlayerCards()}
                     </div>
