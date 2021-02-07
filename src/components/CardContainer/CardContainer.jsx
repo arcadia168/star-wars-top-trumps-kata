@@ -19,10 +19,9 @@ function CardContainer(props) {
     //TODO: make 'number of players' dynamically configuarable here and allow code to adjust!
 
     useEffect(() => {
-        console.info(`use effect called again`);
+        console.info(`use effect called`);
 
         const fetchNewCards = async () => {
-            debugger;
             let cards;
 
             if (cardType === 'characters') {
@@ -56,10 +55,13 @@ function CardContainer(props) {
                 setNameOfWinningCard(nameOfWinningCard);
 
                 //todo: calculate position/player here
-                // if (results && updateResults) {
-                //     const updatedResults = [nameOfWinningCard, ...results];
-                //     updateResults(updatedResults);
-                // }
+                console.info(`existing results were: ${results}`)
+                if (results && updateResults) {
+                    console.info(`updtaing results`);
+                    const updatedResults = [nameOfWinningCard, ...results];
+                    console.info(`updated results are: ${updatedResults}`);
+                    updateResults(updatedResults);
+                }
                 console.info(`Randomly chosen cards are: ${randomlyChosenCards.map(card => JSON.stringify(randomlyChosenCards))}`);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
@@ -68,10 +70,11 @@ function CardContainer(props) {
         }
 
         if (cardTypeChosen && shouldFetchNewCards) {
+            console.info(`Fetching new cards`);
             fetchNewCards();
             setShouldFetchNewCards(false)
         }
-    }, [cardTypeChosen, cardType, shouldFetchNewCards]);
+    }, [cardTypeChosen, cardType, shouldFetchNewCards, results, updateResults]);
 
     //TODO: Translations?
 
