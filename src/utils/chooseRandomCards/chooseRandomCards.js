@@ -2,6 +2,8 @@
 //alternative was requesting api noisily with random ids and getting lots of failures - didn't like this.
 export default function chooseRandomCards(cards, cardsToPick = 2) {
     //TODO: Throw error if not array?
+    debugger;
+
     const numberOfCards = cards.length;
     let randomCardIndices = [];
 

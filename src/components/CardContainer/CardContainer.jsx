@@ -12,14 +12,15 @@ function CardContainer(props) {
     const [cardTypeChosen, setCardTypeChosen] = useState(false); //TODO: rename to game begun?
     const [cardType, setCardType] = useState(false);
     const [randomlyChosenCards, setRandomlyChosenCards] = useState();
-    const [playAgainClicked, setPlayAgainClicked] = useState(false);
+    const [shouldFetchNewCards, setShouldFetchNewCards] = useState(true);
     const [nameOfWinningCard, setNameOfWinningCard] = useState();
 
     //TODO: Fetch all types of possible cards and dynamically render choice from API!
     //TODO: make 'number of players' dynamically configuarable here and allow code to adjust!
 
     useEffect(() => {
-        debugger;
+        console.info(`use effect called again`);
+
         const fetchNewCards = async () => {
             debugger;
             let cards;
@@ -55,20 +56,22 @@ function CardContainer(props) {
                 setNameOfWinningCard(nameOfWinningCard);
 
                 //todo: calculate position/player here
-                if (results && updateResults) {
-                    const updatedResults = [nameOfWinningCard, ...results];
-                    updateResults(updatedResults);
-                }
+                // if (results && updateResults) {
+                //     const updatedResults = [nameOfWinningCard, ...results];
+                //     updateResults(updatedResults);
+                // }
+                console.info(`Randomly chosen cards are: ${randomlyChosenCards.map(card => JSON.stringify(randomlyChosenCards))}`);
                 setRandomlyChosenCards(randomlyChosenCards);
             }
 
-            setPlayAgainClicked(false);
+            // setPlayAgainClicked(false);
         }
 
-        if (cardTypeChosen) {
+        if (cardTypeChosen && shouldFetchNewCards) {
             fetchNewCards();
+            setShouldFetchNewCards(false)
         }
-    }, [cardTypeChosen, cardType, playAgainClicked]);
+    }, [cardTypeChosen, cardType, shouldFetchNewCards]);
 
     //TODO: Translations?
 
@@ -119,7 +122,7 @@ function CardContainer(props) {
                         className="play-again-btn"
                         data-testid="play-again-btn"
                         onClick={() => {
-                            setPlayAgainClicked(true);
+                            setShouldFetchNewCards(true);
                         }}
                     >
                         Play Again
