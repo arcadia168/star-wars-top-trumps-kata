@@ -4,7 +4,7 @@ function CharacterDetails(props) {
     const { characterHeight } = props;
 
     return (
-      <div className="CharacterDetails" data-testid="character-details">
+      <div className="character-details" data-testid="character-details">
           <p>Height is: {characterHeight}</p>
           {/* <h1>Mass is: {mass}</h1>
           <h1>Hair color is: {hair_color}</h1>

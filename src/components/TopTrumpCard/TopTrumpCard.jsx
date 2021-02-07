@@ -20,13 +20,11 @@ function TopTrumpCard(props) {
                 />
             )
         }
-
-        //TODO: if card type is star ship return the starship
     }
 
     return (
-      <div className="TopTrumpCard" data-testid="top-trump-card">
-          <h1 className="TopTrumpCardDetails" data-testid="top-trump-card-name">{name}</h1>
+      <div className="top-trump-card" data-testid="top-trump-card">
+          <h4 className="top-trump-card__title" data-testid="top-trump-card-name">{name}</h4>
           {renderCardDetails()}
       </div>
     );
