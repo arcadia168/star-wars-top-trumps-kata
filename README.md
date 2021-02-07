@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+# Star Wars Top Trump Kata
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Development Notes
+I will write these as I go to record my thoughts, I have broadly split these into questions, assumptions and observations, so that you can follow my thought patterns as closely as possible.
+### Questions
+1. When saying 'People' is it ok to use the concept of 'Characters' as does the Star Wars API?
+
+### Assumptions
+1.
+
+### Observations
+1. Original Star Wars API was down, so I am using a branched alternative at swapi.dev
+2. Not all characteristics from the API are COMPARABLE
+3. The API returns data objects in a paginated manner
+4. The API IDs are not sequential and so can not simply be queried as if the IDs are contiguous.
+
+### Methodology
+Some general notes about how I approached the problem
+
+### TODO/Future Improvements
+Some things that I would do differently or improve in order to further develop and productionise this app.
 
 ## Available Scripts
 

@@ -1,0 +1,10 @@
+.top-trump-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    flex-basis: 1;
+    margin: var(--sizing-unit);
+    align-items: center;
+    padding: calc(var(--sizing-unit) * 4);
+    text-align: center;
+}

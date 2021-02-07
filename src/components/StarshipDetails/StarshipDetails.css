@@ -1,0 +1,5 @@
+.star-ship-details {
+    display: flex;
+    flex-basis: 1;
+    margin: calc(var(--sizing-unit) * 2);
+}
