@@ -39,7 +39,6 @@ export default function decideWinningCard(
     cardType
 ) {
     if (cardType === 'starships') {
-        //BUG! create shallow copy of array to avoid mutation
         const shallowStarshipsArray = cards.map(card => ({
             name: card.name,
             hyperdriveRating: card.hyperdrive_rating,
