@@ -1,0 +1,32 @@
+.card-container__chosen-cards {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-container__active-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-container__play-again-btn-container {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: calc(var(--sizing-unit) * 4);
+}
+
+.card-container__play-again-btn {
+    height: calc(var(--sizing-unit) * 5);
+    width: calc(var(--sizing-unit) * 15);
+}
+
+.card-container__player-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

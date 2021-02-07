@@ -1,6 +1,5 @@
-.CharacterDetails {
+.character-details {
     display: flex;
-    border: 1px solid red;
     flex-basis: 1;
     margin: calc(var(--sizing-unit) * 2);
 }

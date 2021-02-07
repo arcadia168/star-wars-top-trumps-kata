@@ -6,6 +6,7 @@ import StarWarsApiService from '../../services/StarWarsApiService/StarWarsApiSer
 import chooseRandomCards from '../../utils/chooseRandomCards/chooseRandomCards'
 import decideWinningCard from '../../utils/decideWinningCard/decideWinningCard'
 import TopTrumpCard from '../TopTrumpCard/TopTrumpCard';
+import './CardContainer.css';
 
 function CardContainer(props) {
     const { results, updateResults, numPlayers } = props;
@@ -60,7 +61,7 @@ function CardContainer(props) {
             if (cards) {
                 //are cards sorted prior to this? I don't think so...
                 const randomlyChosenCards = chooseRandomCards(cards, validNumberOfPlayers);
-                console.info(`randomly chosen cards (sorted?) are: ${randomlyChosenCards}`);
+                // console.info(`randomly chosen cards (sorted?) are: ${randomlyChosenCards}`);
 
                 const winningCard = decideWinningCard(randomlyChosenCards, cardType);
                 setNameOfWinningCard(winningCard.name);
@@ -75,6 +76,10 @@ function CardContainer(props) {
                 setWinningPlayer(winningPlayerIndex);
                 //TODO: calculate position/player here
                 if (results && updateResults) {
+
+                    //TODO: Keep a score for each player!
+                    //TODO: REUSE results to display winners
+
                     const newResult = {
                         winningPlayer: (winningPlayerIndex + 1),
                         winningCardName: winningCard.name,
@@ -84,10 +89,10 @@ function CardContainer(props) {
 
                     const newResultsArray = [newResult];
 
-                    console.info(`updating results`);
+                    // console.info(`updating results`);
 
                     const updatedResults = newResultsArray.concat(results);
-                    console.info(`updated results are: ${updatedResults}`);
+                    // console.info(`updated results are: ${updatedResults}`);
                     updateResults(updatedResults);
                 }
                 // console.info(`Randomly chosen cards are: ${randomlyChosenCards.map(card => JSON.stringify(randomlyChosenCards))}`);
@@ -115,10 +120,10 @@ function CardContainer(props) {
         return randomlyChosenCards.map((card, index) => (
             <div
                 key={index}
-                className={`player-card player-${index + 1}-card`}
+                className={`card-container__player-card player-${index + 1}-card`}
                 data-testid={`player-${index + 1}-card`}
             >
-                <h3>Player {index + 1}</h3>
+                <h3 className={"card-conatiner__player-number"}>Player {index + 1}</h3>
                 <TopTrumpCard
                     name={randomlyChosenCards[index].name}
                     cardType={cardType}
@@ -159,22 +164,24 @@ function CardContainer(props) {
                 </div>
             )}
             {randomlyChosenCards && (
-                <div className="active-game-container" data-testid="active-game-container">
-                    <div className="winning-card-banner" data-testid="winning-card-banner">
+                <div className="card-container__active-game-container" data-testid="active-game-container">
+                    <div className="card-conainter__winning-card-banner" data-testid="winning-card-banner">
                         {`Player ${winningPlayer + 1} won this round! The winning card is: ${nameOfWinningCard}!`}
                     </div>
-                    <div className={"chosen-cards"} data-testid="randomly-chosen-cards">
+                    <div className={"card-container__chosen-cards"} data-testid="randomly-chosen-cards">
                         {renderChosenPlayerCards()}
                     </div>
-                    <button
-                        className="play-again-btn"
-                        data-testid="play-again-btn"
-                        onClick={() => {
-                            setShouldFetchNewCards(true);
-                        }}
-                    >
-                        Play Again
-                    </button>
+                    <div className="card-container__play-again-btn-container">
+                        <button
+                            className="card-container__play-again-btn"
+                            data-testid="play-again-btn"
+                            onClick={() => {
+                                setShouldFetchNewCards(true);
+                            }}
+                        >
+                            Play Again
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
