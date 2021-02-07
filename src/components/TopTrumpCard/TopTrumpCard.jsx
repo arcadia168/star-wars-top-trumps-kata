@@ -3,20 +3,20 @@ import StarshipDetails from '../StarshipDetails/StarshipDetails';
 import './TopTrumpCard.css';
 
 function TopTrumpCard(props) {
-    const { name, cardType } = props;
+    const { name, cardType, cardDetails } = props;
 
     //TODO: Pass all props to make this more functional? Pass props.
     function renderCardDetails() {
-        if (cardType === 'character') {
+        if (cardType === 'characters') {
             return (
                 <CharacterDetails
-                    height={props.height}
+                    characterHeight={cardDetails.height}
                 />
             )
-        } else if (cardType === 'starship') {
+        } else if (cardType === 'starships') {
             return (
                 <StarshipDetails
-                    hyperdrive_rating={props.hyperdrive_rating}
+                    hyperdriveRating={cardDetails.hyperdrive_rating}
                 />
             )
         }
